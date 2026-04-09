@@ -1,0 +1,11 @@
+Para la modificación de la estructura de una tabla existente se usa la 
+instrucción ALTER TABLE. Ofrce muchas posibilidades.
+
+FUNCIÓN                             	FORMATO
+Añadir una columna a la tabla	        ALTER TABLE <tabla> ADD <definición de columna nueva>
+Modificar una columna existente	        ALTER TABLE <tabla> MODIFY <nueva definición de columna>
+Borrar una columna existente	        ALTER TABLE <tabla> DROP (<columna>) [CASCADE CONSTRAINTS]
+Añadir una restricción a una tabla	    ALTER TABLE <tabla> ADD CONSTRAINT <nombre restricción> <definición de restricción>
+Borrar una restricción de una tabla	    ALTER TABLE <tabla> DROP CONSTRAINT <nombre restricción>
+Desactivar una restricción  existente	ALTER TABLE <tabla> DISABLE CONSTRAINT <nombre restricción>
+Activar una restricción desactivada	    ALTER TABLE <tabla> ENABLE CONSTRAINT <nombre restricción>

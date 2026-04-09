@@ -1,0 +1,91 @@
+Tablas ARTICULOS, FABRICANTES, TIENDAS, PEDIDOS y VENTAS
+Crea las siguientes tablas de acuerdo con las restricciones que se mencionan:
+
+Tabla FABRICANTES
+Descripción de la tabla.
+ Nombre                  Nulo?    Tipo
+ ----------------------- -------- ------------
+ COD_FABRICANTE          NOT NULL NUMBER(3)
+ NOMBRE                           VARCHAR2(15)
+ PAIS                             VARCHAR2(15)            
+ 
+La clave primaria es COD_FABRICANTE.
+Los campos NOMBRE y PAIS deben almacenarse en mayúsculas.  Nota: para ello debes utilizar la función  UPPER(cad), donde cad es una 
+cadena de caracteres que aplicando esta función UPPER se convierte en mayúscula. En la carpeta Ejemplos CREATE TABLE de esta UD3 puedes 
+ver ejemplos de esta función  y también en la UD4yUD5.
+
+
+Tabla ARTICULOS
+Descripción de la tabla.
+          
+Nombre                  Nulo?    Tipo
+----------------------- -------- -------------
+ARTICULO                NOT NULL VARCHAR2(20)
+COD_FABRICANTE          NOT NULL NUMBER(3)
+PESO                    NOT NULL NUMBER(3)
+CATEGORIA               NOT NULL VARCHAR2(10)
+PRECIO_VENTA                     NUMBER(4)
+PRECIO_COSTO                     NUMBER(4)
+EXISTENCIAS                      NUMBER(5)
+            
+            
+La clave primaria está formada por las columnas ARTICULO, COD_FABRICANTE, PESO y CATEGORIA.
+COD_FABRICANTE es clave ajena que referencia a la tabla FABRICANTES.
+PRECIO_VENTA, PRECIO_COSTO y PESO tienen que ser mayor que cero.
+CATEGORIA tiene que ser 'Primera', 'Segunda' o 'Tercera'.
+
+
+Tabla TIENDAS
+Descripción de la tabla.
+Nombre                  Nulo?    Tipo
+----------------------- -------- ------------
+NIF                     NOT NULL VARCHAR2(10)
+NOMBRE                           VARCHAR2(20)
+DIRECCION                        VARCHAR2(20)
+POBLACION                        VARCHAR2(20)
+PROVINCIA                        VARCHAR2(20)
+CODPOSTAL                        NUMBER(5)            
+            
+La clave primaria es NIF.
+PROVINCIA ha de almacenarse en mayúsculas. Nota: para ello debes utilizar la función UPPER.
+
+
+Tabla PEDIDOS
+Descripción de la tabla.
+Nombre                  Nulo?    Tipo
+----------------------- -------- ------------
+NIF                     NOT NULL VARCHAR2(10)
+ARTICULO                NOT NULL VARCHAR2(20)
+COD_FABRICANTE          NOT NULL NUMBER(3)
+PESO                    NOT NULL NUMBER(3)
+CATEGORIA               NOT NULL VARCHAR2(10)
+FECHA_PEDIDO            NOT NULL DATE
+UNIDADES_PEDIDAS                 NUMBER(4)        
+            
+La clave primaria está formada por NIF, ARTICULO, COD_FABRICANTE, PESO, CATEGORIA y FECHA_PEDIDO.
+COD_FABRICANTE es clave ajena que referencia a la tabla FABRICANTES.
+CATEGORIA tiene que ser 'Primera', 'Segunda' o 'Tercera'.
+UNIDADES_PEDIDAS debe ser mayor que cero
+Las columnas ARTICULO, COD_FABRICANTE, PESO y CATEGORIA son clave ajena y referencian a la tabla ARTICULOS.
+NIF es clave ajena y referencia a la tabla TIENDAS.
+
+
+Tabla VENTAS
+Descripción de la tabla. Crear la tabla sin restricciones.
+Nombre                  Nulo?    Tipo
+----------------------- -------- --------------
+NIF                     NOT NULL VARCHAR2(10)
+ARTICULO                NOT NULL VARCHAR2(20)
+COD_FABRICANTE          NOT NULL NUMBER(3)
+PESO                    NOT NULL NUMBER(3)
+CATEGORIA               NOT NULL VARCHAR2(10)
+FECHA_VENTA             NOT NULL DATE
+UNIDADES_VENDIDAS                NUMBER(4)         
+            
+Añadir las siguientes restricciones con ALTER TABLE
+La clave primaria está formada por NIF, ARTICULO, COD_FABRICANTE, PESO, CATEGORIA y FECHA_VENTA.
+COD_FABRICANTE es clave ajena que referencia a la tabla FABRICANTES.
+UNIDADES_VENDIDAS debe ser mayor que cero
+CATEGORIA tiene que ser 'Primera', 'Segunda' o 'Tercera'.
+Las columnas ARTICULO, COD_FABRICANTE, PESO y CATEGORIA son clave ajena y referencian a la tabla ARTICULOS.
+NIF es clave ajena y referencia a la tabla TIENDAS.

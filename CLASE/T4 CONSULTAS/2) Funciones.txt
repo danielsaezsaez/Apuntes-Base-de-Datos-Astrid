@@ -1,0 +1,141 @@
+1. Funciones Aritméticas:
+
+Funciones de valores simples
+Estas funciones son las más sencillas y trabajan con un único numero,
+variable o columna de la tabla.
+
+Función	                Propósito
+
+ABS( n )	            Nos devuelve el valor absoluto de n
+
+CEIL( n )	            Nos devuelve el valor entero igual o inmediatamente superior a n
+
+FLOOR( n )	            Nos devuelve el valor entero igual o inmediatamente inferior a n
+
+MOD(m,n)	            Nos devuelve el resto de la división de m entre n
+
+POWER(m, exponente)	    Calcula la potencia de m elevado a exponente
+
+SIGN(valor)	            Nos devuelve el signo de valor
+
+NVL(valor, expresión)	Función que nos sustituye valor por expresión siempre que valor sea NULL
+
+ROUND(número[, m])	    Nos redondea numero a m decimales
+
+SQRT( n )	            Nos devuelve la raíz cuadrada de n
+
+TRUNC(número[,m ])	    Trunca los números para que tengan m decimales.
+
+Funciones de grupos de valores
+Este tipo de funciones se utilizan principalmente para realizar 
+estadísticas, por lo que los valores nulos no se toman en cuenta.
+
+Función	Propósito
+AVG( n )	        Nos devuelve la media de n
+
+COUNT(*|expresión)	Nos devuelve el número de veces que aparece expresión.
+
+MAX(expresión)	    Nos devuelve el valor máximo de expresión
+
+MIN (expresión)	    Nos devuelve el valor mínimo de expresión
+
+VARIANCE(expresión)	Nos devuelve la varianza de expresión
+
+SUM(expresión)	    Nos devuelve la suma de valores de expresión.
+
+Funciones de listas
+Estas funciones trabajan con grupos de columnas dentro de una misma fila.
+
+Función	Propósito
+GREATEST(valor1, valor2,)	Obtiene el mayor valor de la lista
+LEAST(valor1, valor2,...)	Obtiene el menor valor de la lista
+-----------------------------------------------------------------------------------------------------------
+
+2. Funciones de cadena de caracteres
+
+Funciones que devuelven caracteres
+Este tipo de funciones devuelven un carácter o varios caracteres.
+
+Función	                                            Propósito
+
+CHR( n )	                                        Nos devuelve el carácter cuyo valor en binario es n
+
+CONCAT(cad1, cad2)	                                Nos devuelve cad1 concatenada con cad2
+
+UPPER(cad)	                                        Convierte cad a mayúsculas
+
+LOWER(cad)	                                        Convierte cad a minúsculas
+
+LPAD(cad1,n[,cad2])	                                Con esta función añadimos caracteres a cad1 por la izquierda hasta una longitud máxima dada por n
+
+INITCAP(cad)	                                    Convierte la primera letra de cad a mayúscula
+
+LTRIM(cad [,set])	                                Elimina un conjunto de caracteres a la izquierda de cad, siendo set el conjunto de caracteres a eliminar
+
+RPAD(cad1, n[,cad2])	                            Con esta función añadimos caracteres de la misma forma que con la función LPAD pero esta vez los añadimos a la 
+                                                    derecha
+
+RTRIM(cad[,set])	                                Hace lo mismo que LTRIM pero por la derecha
+
+REPLACE(cad,cadena_buscada [,cadena_sustitucion] )	Sustituye un conjunto de caracteres de 0 o más caracteres, devuelve cad con cada ocurrencia de cadena_buscada 
+                                                    sustituida por cadena_sustitucion
+
+SUBSTR(cad, m[,n])	                                Devuelve la subcadena de cad que abarca desde m hasta el numero de caracteres dados por n.
+
+TRANSLATE(cad1,cad2,cad3)	                        Convierte caracteres de una cadena en caracteres diferentes. Devuelve cad1 con los caracteres encontrados en cad2 
+                                                    y sustituidos por los caracteres de cad3
+
+Funciones que devuelven valores numéricos
+Estas funciones nos devuelven números a modo de información.
+
+Función         	                Propósito
+
+ASCII(cad)	                        Devuelve el valor ASCII de la primera letra de cad
+INSTR(cad1, cad2[,comienzo[,m]])	Función que busca un conjunto de caracteres dentro de una cadena.
+                                    Nos devuelve la posición de cad2 en cad1 empezando a buscar en comienzo
+LENGTH(cad)	                        Devuelve en número de caracteres de cad
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Funciones de Fecha
+
+Dentro de SQL tenemos un tipo de dato denominado DATE. Este campo tiene el siguiente formato predeterminado: 'dd/mm/yy'
+Este formato lo podemos modificar con la función TO_CHAR que veremos posteriormente.
+Cabe señalar que el tipo de dato DATE también almacena la siguiente información en el siguiente orden: Siglo/Año/Mes/Día/Hora/Minutos/Segundos
+
+A continuación mostramos una tabla con las funciones para el manejo de fechas en SQL:
+
+Función	                                  Propósito
+
+SYSDATE	                                  Devuelve la fecha del sistema
+ADD_MONTHS (fecha, n)	                  Devuelve la fecha incrementada en n meses
+LAST_DAY (fecha)	                      Devuelve la fecha del último día del mes que contiene fecha
+MONTHS_BETWEEN (fecha1, fecha2)	          Devuelve la diferencia en meses entre la fecha1 y la fecha2
+NEXT_DAY (fecha, cad)	                  Devuelve la fecha del primer día de la semana indicado por cad después de la fecha indicada por fecha. 
+                                          Cad será siempre un día de la semana escrito con letras, por ejemplo Monday.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. Funciones de Converisón
+
+Función	                            Propósito
+
+TO_CHAR(fecha,'formato')	        Esta función nos convierte una fecha de tipo date a una fecha de tipo varchar2
+TO_CHAR(numero,'formato')	        Nos convierte un dato de tipo number a un tipo varchar2
+TO_DATE(cad,'formato')	            Convierte un tipo de dato varchar2 o char a un valor de tipo date con el formato especificado
+TO_NUMBER(cadena,['formato'])	    Convierte una cadena a tipo de dato number, y si se le pasa, con el formato especificado
+
+Las distintas marcas para los formatos podéis encontrarlas en el siguiente enlace:
+Marcas de formatos (documentación de ORACLE)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. Otras Funciones
+
+Función	                                                Propósito
+
+USER	                                                Nos devuelve el nombre del usuario actual
+
+UID	                                                    Nos devuelve el identificador del usuario actual
+
+DECODE(var,val1,cod1,val2,cod2, ... ,valor-por-defecto)	Función que sustituye un valor por otro. Si var es igual a cualquier val de la lista lo sustituye 
+                                                        por su correspondiente cod

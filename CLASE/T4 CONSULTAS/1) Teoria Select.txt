@@ -1,0 +1,48 @@
+https://www.w3schools.com/sql/default.asp
+
+Para generar los resultados de una instrucción SELECT hay que seguir los siguientes pasos:
+
+FROM: Se evalúa la cláusula FROM para comprobar la tabla o tablas a usar.
+WHERE: Si hay cláusula WHERE, aplicar condiciones de búsqueda a cada fila.
+GROUP BY: Agrupa la filas filtradas por WHERE, por las expresiones indicadas en GROUP BY.
+HAVING: Aplica las condiciones de búsqueda a los grupos de fila.
+SELECT: Extrae las columnas indicadas de cada fila que queda.
+SELECT DISTINCT: Elimina las filas duplicadas.
+ORDER BY: Ordena las filas resultantes según los criterios que se establezcan en la cláusula
+Si la instrucción es una UNION, INTERSECT o MINUS, se repiten los pasos para cada SELECT
+(nota: los puntos 3, 4 y 8 aún no los hemos visto en clase, `pero conviene que los vayáis viendo en la teoría)
+
+
+Sintáxis de la sentencia SELECT
+
+SELECT [DISTINCT | ALL] {* | expresión-1, expresión-2, ..., expresión-n}
+FROM tabla-1[, tabla-2, ..., tabla-n]
+[ WHERE condicion_where]
+[ GROUP BY expresión-1[, expresión-2, ..., expresión-n]
+[ HAVING condicion_having]
+[{ UNION | INTERSECT | MINUS} SELECT ...]
+[ ORDER BY {expresión | pos_columna} [ASC | DESC][,{expresión | pos_columna} [ASC | DESC], ...]]
+
+Donde:
+Una expresión puede ser una constante, una referencia a la columna de una tabla o una expresión aritmética.
+Los corchetes ([]) indican que lo que está encerrado entre ellos es opcional.
+Las barras verticales (|) indican una elección entre dos o más elementos.
+Las llaves ({}) indican una elección entre requeridos.
+
+-------------------------------------------------------------------------------------------------------------------------
+Utilidades
+Requisitos de finalización
+
+Comando	                    Propósito
+SELECT * FROM CAT;	        Listar todas las tablas del usuario
+DESC nombre_tabla           Ver la descripción de todos los campos de una tabla
+                            Ejemplo: DESC EMPLE
+
+START nombre_archivo	    Lanzar un fichero script SQL
+                            Ejemplo: START c:\datos\tabla.sql
+
+SET LINESIZE n	            Establecer el tamaño de la línea al valor n
+SET PAGESIZE n	            Establecer el tamaño de la página al valor n
+CL(EAR) SCR(EEN)	        Borra la pantalla de la consola de SQL
+PURGE recyclebin;	        Para vaciar la papelera de reciclaje del usuario
+

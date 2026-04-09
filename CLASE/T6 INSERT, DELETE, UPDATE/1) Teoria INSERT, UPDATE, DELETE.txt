@@ -1,0 +1,49 @@
+INSERT
+Sentencia para insertar datos en una tabla.
+
+Función	                Formato
+
+Inserción de una fila	INSERT INTO NombreTabla [(columna [, columna] ...)]
+                        VALUES (valor [, valor] ...);
+
+Inserción multifilas	INSERT INTO NombreTabla [(columna [, columna] ...)]
+                        SELECT ...;
+------------------------------------------------------------------------------
+UPDATE
+Sentencia para modificar los datos de una tabla.
+
+Función	                Formato
+
+Modificación de filas	UPDATE NombreTabla
+                        SET col1 = valor1, ...,coln = valorn
+                        WHERE condición;
+
+
+Modificación de filas 
+con SELECT	                    UPDATE NombreTabla
+                                SET col1 = valor1, ...,coln = valorn
+                                WHERE colx = (SELECT ...);
+
+                                UPDATE NombreTabla
+                                SET (col1, col2,...) = (SELECT columna1, columna2, ...)
+                                WHERE condición;
+
+                                UPDATE NombreTabla
+                                SET col1 = (SELECT columna1 ...), col2 = (SELECT columna1 ...), ...
+                                WHERE condición;
+
+---------------------------------------------------------------------------------------------------------------
+DELETE
+Sentencia para borrar datos de una tabla.
+
+Función	            Formato
+
+Borrado de filas	DELETE FROM NombreTabla WHERE condición;
+
+-----------------------------------------------------------------------------------------------------------------
+TRANSACCIONES
+Una transacción es una secuencia de una o más sentencias SQL que juntas forman una unidad de trabajo.
+
+Función         	    Formato
+Validar los cambios	    COMMIT;
+Abortar transacciones	ROLLBACK;

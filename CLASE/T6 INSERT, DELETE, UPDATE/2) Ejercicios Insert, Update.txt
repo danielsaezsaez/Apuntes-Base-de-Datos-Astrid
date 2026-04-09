@@ -1,0 +1,25 @@
+Ejercicios sencillos de INSERT
+Tablas ALUMNOS y ALUMNOS4
+(para realizar esta relación de ejercicios debes cagar el script datosInsert.sql)
+
+Dadas las tablas ALUMNOS y ALUMNOS4, insertar en la tabla ALUMNOS4:
+
+1. Un nuevo registro mediante una orden INSERT rellenando todos los campos.
+
+2. Un nuevo registro mediante una orden INSERT rellenando sólo algunos campos.
+
+3. Todos los datos de la tablas ALUMNOS  a partir de una SELECT modificando los campos adecuadamente.
+
+-----------------------------------------------------------------------------------------------------
+
+Ejercicios sencillos de UPDATE
+Tablas ALUMNOS
+(para realizar esta relación de ejercicios debes cagar el script datosinsert.sql)
+
+Modificar la tabla ALUMNOS:
+
+1. Cambiar la fecha de ingreso de Amador al día de hoy.
+
+2. Poner la fecha de ingreso y la ciudad de Carlos a los alumnos de Sevilla.
+
+3. Poner a Ismael: la fecha de ingreso de Javier y el delegado de Daniel.

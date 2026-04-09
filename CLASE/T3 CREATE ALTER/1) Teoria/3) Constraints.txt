@@ -1,0 +1,12 @@
+Las restricciones se usan para declarar en el modelo relacional las condiciones que los datos cumplen en el mundo real. 
+Pueden ser de diverso tipo (valor por defecto, obligatorio, clave primaria, clave ajena, de unicidad, de comprobación de una condición, etc.)
+
+FUNCIÓN                 	            FORMATO
+Campo obligatorio       	            NOT NULL
+Valor por defecto	                    DEFAULT valor
+Campo único	                            UNIQUE
+Clave primaria	                        PRIMARY KEY [(Campo o lista de campos)]
+Clave ajena (restricción de columna)	REFERENCES nombre_tabla [ON DELETE] [SET NULL | CASCADE]
+Clave ajena (restricción de tabla)	    FOREIGN KEY (Campo o lista de campos) REFERENCES nombre_tabla [ON DELETE] [SET NULL | CASCADE]
+Permite declarar una condición que debe 
+cumplir uno o más atributos	            CHECK (condición)

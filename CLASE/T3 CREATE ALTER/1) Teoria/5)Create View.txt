@@ -1,0 +1,107 @@
+https://www.oracletutorial.com/oracle-view/oracle-create-view/
+
+Sintaxis
+
+Orden CREATE VIEW:
+CREATE [OR REPLACE] VIEW Nombre_Vista [(alias_de_columnas)] AS 
+
+ Consulta_SELECT_con_las_columnas_y_datos_a_incluir_en_la_vista
+
+ [WITH READ ONLY] 
+
+[WITH CHECK OPTION]
+
+
+
+Introducción al uso de vistas
+Una vista no es más que una consulta almacenada a fin de utilizarla tantas veces como se desee. Una vista no contiene datos sino la instrucción SELECT necesaria 
+para crear la vista, eso asegura que los datos sean coherentes al utilizar los datos almacenados en las tablas. Por todo ello, las vistas gastan muy poco espacio 
+de disco.
+
+Las vistas se emplean para:
+
+Realizar consultas complejas más fácilmente, ya que permiten dividir la consulta en varias subconsultas (cada una de las cuales es más sencilla que la original)
+Proporcionar tablas con datos completos, resultados formatear o realizar cálculos sobre los datos originales
+Proporcionar formas personalizadas y más entendibles de los datos
+Ocultar el almacenamiento intrínseco de la base de datos y conseguir una mayor independencia de los datos respecto al resto de elementos de la base de datos.
+Restringir el acceso a los datos originales
+Ser utilizadas como cursores de datos en los lenguajes procedimentales (como PL/SQL)
+Hay dos tipos de vistas:
+
+Simples. Las forman una sola tabla y no contienen funciones de agrupación. Su ventaja es que permiten siempre realizar operaciones DML sobre ellas. Características:
+Sólo pueden referirse a una tabla de la base de datos
+No pueden contener funciones
+No pueden contener ninguna cláusula de agrupación
+Admiten realizar sobre ellas operaciones DML (sirven por lo tanto, para modificar la tabla original)
+Complejas. Obtienen datos de varias tablas, pueden utilizar funciones de agrupación y de cualquier otro tipo. No siempre permiten operaciones DML.
+creación de vistas
+Sintaxis:
+
+CREATE [OR REPLACE] [FORCE|NOFORCE] VIEW vista 
+                [(alias[, alias2...])]
+AS consultaSELECT
+[WITH CHECK OPTION [CONSTRAINT restricción]]
+[WITH READ ONLY [CONSTRAINT restricción]]
+Los distintos elementos de la sintaxis de la instrucción son:
+
+OR REPLACE. Si la vista ya existía, la cambia por la actual (de esta forma podemos modificar una vista creada anteriormente).
+FORCE. Crea la vista aunque los datos de la consulta SELECT no existan
+vista. Nombre que se le da a la vista
+alias. Lista de alias que se establecen para las columnas devueltas por la consulta SELECT en la que se basa esta vista. El número de alias debe coincidir 
+con el número de columnas devueltas por SELECT. Los alias se usan para asegurar que todas las columnas tienen un nombre único y evitar que las columnas con 
+cálculos se dejen sin renombrar.
+No son necesarios si ya se ha puesto un nombre y/o un alias correcto en cada columna de la instrucción SELECT.
+WITH CHECK OPTION. Hace que sólo las filas que se muestran en la vista puedan ser añadidas (INSERT) o modificadas (UPDATE). La restricción que sigue a esta 
+sección es el nombre que se le da a esta restricción de tipo CHECK OPTION.
+WITH READ ONLY. Hace que la vista sea de sólo lectura. Permite grabar un nombre para esta restricción.
+Lo bueno de las vistas es que tras su creación se utilizan como si fueran una tabla.
+
+Ejemplo:
+
+CREATE VIEW resumen 
+-- alias 
+(id_localidad, localidad, poblacion, n_provincia, provincia,superficie, capital_provincia, id_comunidad, comunidad, capital_comunidad)
+AS 
+(  SELECT l.id_localidad, l.nombre, l.poblacion, 
+          n_provincia, p.nombre, p.superficie, l2.nombre, 
+          id_comunidad, c.nombre, l3.nombre
+  FROM localidades l
+  JOIN provincias p USING (n_provincia)
+  JOIN comunidades c USING (id_comunidad)
+  JOIN localidades l2 ON (p.id_capital=l2.id_localidad)
+  JOIN localidades l3 ON (c.id_capital=l3.id_localidad)
+);
+SELECT DISTINCT (comunidad, capital_comunidad) 
+FROM resumen; 
+/* La vista pasa a utilizarse como si fuera una tabla normal*/
+La creación de la vista del ejemplo es compleja ya que hay relaciones complicadas, pero una vez creada la vista, se le pueden hacer consultas como si se 
+tratara de una tabla normal. Incluso se puede utilizar el comando DESCRIBE sobre la vista para mostrar la estructura de los campos que forman la vista o 
+utilizarse como subconsulta en los comandos UPDATE o DELETE.
+
+Detalles sobre el uso de vistas
+DML en las vistas
+Las instrucciones DML (INSERT, UPDATE o DELETE) se pueden ejecutar sobre las vistas simples.
+
+En el caso de las vistas complejas, se pueden borrar filas si la vista:
+
+No contiene funciones de agrupación (como SUM o AVG)
+No se usa la cláusula GROUP BY
+No se usa la cláusula DISTINCT
+No se usa ROWNUM
+Además no se pueden modificar los datos si hay columnas que utilizan expresiones o funciones (por muy simples que fueran estas).
+
+Para añadir datos (instrucción INSERT) además hay que cumplir que todos los campos con restricciones de tipo NOT NUL de las tablas están incluidos.
+
+En todo caso, la cláusula WITH READ ONLY comentada anteriormente prohíbe cualquier instrucción DML sobre la vista.
+
+Mostrar la lista de vistas del usuario
+La vista del diccionario de datos de Oracle USER_VIEWS permite mostrar una lista de todas las vistas que posee el usuario actual. Es decir, para saber
+ qué vistas hay disponibles se usa:
+
+SELECT * FROM USER_VIEWS;
+La columna TEXT de esa vista contiene la sentencia SQL que se utilizó para crear la vista (sentencia que es ejecutada cada vez que se invoca a la vista).
+
+Borrar vistas
+Para ello se utiliza el comando DROP VIEW:
+
+DROP VIEW nombreDeVista;

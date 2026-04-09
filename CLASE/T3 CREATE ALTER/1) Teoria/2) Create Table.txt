@@ -1,0 +1,17 @@
+Sintaxis
+
+Orden CREATE
+
+CREATE TABLE table_name (
+   column1 datatype,
+   column2 datatype,
+   column3 datatype,
+   ...
+);
+
+Orden CREATE con SELECT
+
+De esta manera, creamos la tabla con datos recuperados de una consulta. En este caso, no es necesario especificar los tipos ni los tamaños de las columnas, ya que vienen determinados por los correspondientes a las columnas de la consulta. Se puede poner una lista con los nombres de las columnas, si se omite, los nombres de las columnas serán los de la consulta.
+
+CREATE TABLE table_name [(lista de nombres de columnas)]
+AS SELECT ... ;
